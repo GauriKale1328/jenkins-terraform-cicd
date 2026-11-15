@@ -33,7 +33,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker build -t ${DOCKERHUB_REPO}:${BUILD_NUMBER} -t ${DOCKERHUB_REPO}:latest .
+                    docker build \
+                      -t ${DOCKERHUB_REPO}:${BUILD_NUMBER} \
+                      -t ${DOCKERHUB_REPO}:latest .
                 '''
             }
         }
@@ -46,9 +48,12 @@ pipeline {
                     passwordVariable: 'DOCKERHUB_TOKEN'
                 )]) {
                     sh '''
-                        echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USER" --password-stdin
+                        echo "$DOCKERHUB_TOKEN" | docker login \
+                          -u "$DOCKERHUB_USER" --password-stdin
+
                         docker push ${DOCKERHUB_REPO}:${BUILD_NUMBER}
                         docker push ${DOCKERHUB_REPO}:latest
+
                         docker logout
                     '''
                 }
@@ -57,17 +62,17 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withCredentials([file(
-                    credentialsId: 'kubeconfig-file',
-                    variable: 'KUBECONFIG_FILE'
-                )]) {
-                    sh '''
-                        export KUBECONFIG="$KUBECONFIG_FILE"
-                        sed "s|IMAGE_PLACEHOLDER|${DOCKERHUB_REPO}:${BUILD_NUMBER}|g" k8s/deployment.yaml | kubectl apply -f -
-                        kubectl apply -f k8s/service.yaml
-                        kubectl rollout status deployment/${APP_NAME} --namespace ${K8S_NAMESPACE} --timeout=180s
-                    '''
-                }
+                sh '''
+                    export KUBECONFIG=/var/lib/jenkins/.kube/config
+
+                    sed "s|IMAGE_PLACEHOLDER|${DOCKERHUB_REPO}:${BUILD_NUMBER}|g" \
+                      k8s/deployment.yaml | kubectl apply -f -
+
+                    kubectl apply -f k8s/service.yaml
+
+                    kubectl rollout status deployment/${APP_NAME} \
+                      --namespace ${K8S_NAMESPACE} --timeout=180s
+                '''
             }
         }
     }
