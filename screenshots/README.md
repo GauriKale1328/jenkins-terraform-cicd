@@ -2,13 +2,12 @@
 
 Save your assignment screenshots in this folder. Suggested filenames:
 
-- jenkins-pipeline-success.png
-- jenkins-test-stage.png
-- dockerhub-image.png
-- kubernetes-deployment.png
-- terraform-init.png
-- terraform-plan.png
-- terraform-apply.png
-- terraform-nginx-page.png
+- jenkins-pipeline-success
+- jenkins-test-stage
+- dockerhub-image
+- kubernetes-deployment
+- terraform-init
+- terraform-plan
+- terraform-apply
+- terraform-nginx-page
 
-Do not upload passwords, tokens, or kubeconfig secrets.
