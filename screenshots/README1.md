@@ -119,5 +119,4 @@ Never include passwords, access tokens, or private kubeconfig contents in screen
 
 
 
-## Demo video
 
