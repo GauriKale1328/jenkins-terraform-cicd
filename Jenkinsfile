@@ -1,8 +1,8 @@
+
 pipeline {
     agent any
 
     environment {
-        // Replace with your Docker Hub repository, e.g. gauri0047/flask-cicd-app
         DOCKERHUB_REPO = 'YOUR_DOCKERHUB_USERNAME/flask-cicd-app'
         K8S_NAMESPACE = 'default'
         APP_NAME = 'flask-cicd-app'
@@ -18,14 +18,15 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                    python3 -m pip install --user -r requirements.txt -r requirements-dev.txt
+                    python3 -m venv .venv
+                    .venv/bin/python -m pip install -r requirements.txt -r requirements-dev.txt
                 '''
             }
         }
 
         stage('Test') {
             steps {
-                sh 'python3 -m pytest -v'
+                sh '.venv/bin/python -m pytest -v'
             }
         }
 
