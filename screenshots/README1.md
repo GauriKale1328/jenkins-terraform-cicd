@@ -126,13 +126,7 @@ Never include passwords, access tokens, or private kubeconfig contents in screen
 6. Show `terraform plan`, `terraform apply`, and the Nginx page.
 7. Explain that Terraform resources can be removed with `terraform destroy`.
 
-## Before submission
 
-- Replace the Docker Hub username placeholder in `Jenkinsfile`.
-- Add the Jenkins credentials described above; never put secrets in source files.
-- Run the Jenkins pipeline and Terraform commands in a suitable environment.
-- Add screenshots and your demo video link.
-- Confirm the repository is accessible to your evaluator.
 
 ## Demo video
 
