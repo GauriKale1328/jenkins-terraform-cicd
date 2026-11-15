@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_REPO = 'YOUR_DOCKERHUB_USERNAME/flask-cicd-app'
+        DOCKERHUB_REPO = 'gauri0047/flask-cicd-app'
         K8S_NAMESPACE = 'default'
         APP_NAME = 'flask-cicd-app'
     }
