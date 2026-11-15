@@ -116,20 +116,8 @@ Save your own screenshots in `screenshots/`:
 
 Never include passwords, access tokens, or private kubeconfig contents in screenshots or GitHub.
 
-## 6. Demo video outline
-
-1. Introduce the Flask application and repository.
-2. Explain Jenkins stages: checkout, install, test, build, push, deploy.
-3. Trigger a Jenkins build and show successful stages and test output.
-4. Show the Docker Hub image and Kubernetes deployment.
-5. Explain Terraform files and the Docker image/network/container resources.
-6. Show `terraform plan`, `terraform apply`, and the Nginx page.
-7. Explain that Terraform resources can be removed with `terraform destroy`.
 
 
 
 ## Demo video
 
-Add your video URL here after uploading it:
-
-`PASTE_YOUR_DEMO_VIDEO_LINK_HERE`
