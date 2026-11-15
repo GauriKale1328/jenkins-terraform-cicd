@@ -1,0 +1,3 @@
+container_name = "terraform-demo-nginx"
+image_name     = "nginx:alpine"
+host_port      = 8088
